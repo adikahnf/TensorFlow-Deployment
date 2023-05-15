@@ -7,8 +7,8 @@ var model;
 function getModel() {
 	model = tf.sequential();
 
-	model.add(tf.layers.conv2d({inputShape: [28, 28, 1], kernelSize: 3, filters: 8, activation: 'relu'}));
-	model.add(tf.layers.maxPooling2d({poolSize: [2, 2]}));
+	model.add(tf.layers.conv2d({inputShape: [28, 28, 1], kernelSize: 3, filters: 8, activation: 'relu'})); // kernelSize = Ukuran Filter 3x3
+	model.add(tf.layers.maxPooling2d({poolSize: [2, 2]})); //MaxPooling2D
 	model.add(tf.layers.conv2d({filters: 16, kernelSize: 3, activation: 'relu'}));
 	model.add(tf.layers.maxPooling2d({poolSize: [2, 2]}));
 	model.add(tf.layers.flatten());
@@ -24,7 +24,7 @@ async function train(model, data) {
 	const metrics = ['loss', 'val_loss', 'accuracy', 'val_accuracy'];
 	const container = { name: 'Model Training', styles: { height: '640px' } };
 	const fitCallbacks = tfvis.show.fitCallbacks(container, metrics);
-  
+	
 	const BATCH_SIZE = 512;
 	const TRAIN_DATA_SIZE = 5500;
 	const TEST_DATA_SIZE = 1000;
